@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="cards">
+    <% @flats.each do |flat| %>
+      <%= link_to flat_path(flat), class:"text-decoration-none" do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( 'https://images.unsplash.com/photo-1667327940053-ec9d7f8455c4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2ODQ0NzY0NA&ixlib=rb-4.0.3&q=80&w=1000')">
+          <%= flat.title %>
+          <%= flat.city %>
+          <%= flat.description %>
+          <%= flat.bedrooms %>
+          <%= flat.number_of_guests %>
+          <%= flat.price_per_night %>
+          <%= flat.rating %>
+          <%= flat.user.first_name %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
