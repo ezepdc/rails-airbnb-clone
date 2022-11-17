@@ -1,21 +1,16 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-4">
-      <%= simple_form_for(@flat) do |f| %>
-        <%= f.error_notification %>
-        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-        <%= f.input :title %>
-        <%= f.input :city %>
-        <%= f.input :description %>
-        <%= f.input :bedrooms %>
-        <%= f.input :number_of_guests %>
-        <%= f.input :price_per_night %>
-
-        <%# <%= f.input :photo, as: :file %>
-        <div class="btn btn-flat">
-        <%= f.button :submit %>
-        </div>
-      <% end %>
-    </div>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-6 col-lg-4">
+    <%= simple_form_for(@flat) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.input :title %>
+      <%= f.input :city %>
+      <%= f.input :description %>
+      <%= f.input :bedrooms %>
+      <%= f.input :number_of_guests %>
+      <%= f.input :price_per_night %>
+      <%# <%= f.input :photo, as: :file %>
+      <%= f.button :submit, class: "btn btn-flat" %>
+    <% end %>
   </div>
 </div>

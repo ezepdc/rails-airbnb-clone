@@ -1,8 +1,18 @@
-
-<h2><%= link_to "New flat", new_flat_path %></h2>
-<h1>Editing flat</h1>
-<%= render 'form', flat: @flat %>
-
-<br>
-<p><%= link_to "Show", flat_path(@flat) %></p>
-<p><%= link_to "<- Back", flats_path %></p>
+<div class="container">
+  <br>
+  <div class="row text-center">
+    <h1>Editing flat</h1>
+  </div>
+  <br>
+  <%= render 'form', flat: @flat %>
+  <br>
+  <hr>
+  <div class="row justify-content-evenly">
+    <div class="col-4">
+      <%= link_to "< Back", flats_path, class: "btn btn-ghost" %>
+    </div>
+    <div class="col-2">
+      <%= link_to "Show", flat_path(@flat), class: "btn btn-ghost" %>
+    </div>
+  </div>
+</div>
