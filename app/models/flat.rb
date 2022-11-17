@@ -6,4 +6,5 @@ class Flat < ApplicationRecord
   validates :bedrooms, numericality: { only_integer: true }
   validates :number_of_guests, numericality: { only_integer: true }
   validates :price_per_night, numericality: { only_integer: true }
+  has_many :bookings, dependent: :destroy
 end

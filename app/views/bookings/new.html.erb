@@ -1,0 +1,9 @@
+<h1>New booking</h1>
+<%= simple_form_for [@flat, @booking] do |f| %>
+  <%= f.input :host_name %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :number_of_guests %>
+  <%= f.input :details %>
+  <%= f.submit "Submit booking", class: "btn btn-primary" %>
+<% end %>

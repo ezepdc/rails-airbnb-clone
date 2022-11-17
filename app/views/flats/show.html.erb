@@ -9,6 +9,6 @@
 <%= @flat.rating %>
 <%= @flat.user.first_name %>
 
+<p><%= link_to "Book", new_flat_booking_path(@flat) %></p>
 <p><%= link_to "Edit", edit_flat_path(@flat) %></p>
 <p><%= link_to "Delete", flat_path(@flat), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%></p>
-<p><%= @flat.title %></p>
