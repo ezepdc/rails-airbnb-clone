@@ -3,13 +3,13 @@
     <% @flats.each do |flat| %>
       <div class="col">
         <div class="card-flat">
-          <%= cl_image_tag(flat.photo.key) %>
+          <%= cl_image_tag flat.photo.key %>
           <div class="card-flat-infos">
             <div>
               <%= link_to flat_path(flat) do %>
-                <h2><%= flat.title %></h2>
+                <h3><%= flat.title %></h3>
               <% end %>
-              <h3><%= flat.city %></h3>
+              <h2><%= flat.city %></h2>
               <p><%= flat.description %></p>
               <p>Bedrooms: <%= flat.bedrooms %></p>
               <p>Number of guests: <%= flat.number_of_guests %></p>
@@ -17,7 +17,11 @@
               <p><%= "⭐️" * flat.rating %></p>
             </div>
             <h2 class="card-flat-pricing">$<%= flat.price_per_night %></h2>
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=461&q=80" class="card-flat-user avatar-bordered" />
+            <% if flat.user.avatar.attached? %>
+              <%= cl_image_tag flat.user.avatar.key, class: "card-flat-user avatar-bordered" %>
+            <% else %>
+              <%= image_tag "user.png", class: "card-flat-user avatar-bordered" %>
+            <% end %>
           </div>
         </div>
       </div>

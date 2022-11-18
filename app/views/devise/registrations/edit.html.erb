@@ -5,6 +5,18 @@
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: {turbo: false} }) do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
+          <div class="row mb-3">
+            <div class="col-sm-4">
+              <% if current_user.avatar.attached? %>
+                <%=  cl_image_tag current_user.avatar.key, class: "rounded-circle", style: "width: 85%" %>
+              <% else %>
+                <%= image_tag "user.png", class: "avatar dropdown-toggle" %>
+              <% end %>
+            </div>
+            <div class="col-sm-8">
+              <%= f.input :avatar, as: :file %>
+            </div>
+          </div>
           <div class="col-12 mb-3">
             <%= f.input :first_name, required: true, autofocus: true %>
           </div>
