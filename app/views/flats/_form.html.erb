@@ -5,6 +5,7 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <%= f.input :title %>
       <%= f.input :city %>
+      <%= f.input :address %>
       <%= f.input :description %>
       <%= f.input :bedrooms %>
       <%= f.input :number_of_guests %>

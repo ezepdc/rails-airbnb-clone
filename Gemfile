@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "devise"
 gem "cloudinary"
-
+gem "geocoder"
 
 
 ruby "3.1.2"
