@@ -1,0 +1,11 @@
+<div class="row justify-content-center">
+  <div class="col-sm-6 col-md-8">
+    <%= simple_form_for([flat, booking]) do |f| %>
+      <%= f.input :start_date %>
+      <%= f.input :end_date %>
+      <%= f.input :number_of_guests %>
+      <%= f.input :details %>
+      <%= f.submit "Book", class: "btn btn-flat", style: "width: 100%" %>
+    <% end %>
+  </div>
+</div>
