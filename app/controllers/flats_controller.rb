@@ -2,12 +2,16 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flats = Flat.all
+    if params[:query].present?
+      @flats = Flat.search_by_title_city_and_description(params[:query])
+    else
+      @flats = Flat.all
+    end
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
         lng: flat.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {flat: flat}),
+        info_window: render_to_string(partial: "info_window", locals: { flat: flat }),
         image_url: helpers.asset_url("home.png")
       }
     end
