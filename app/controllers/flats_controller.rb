@@ -55,7 +55,15 @@ class FlatsController < ApplicationController
   end
 
   def my_flats
-    @flats = Flat.find_by(user: current_user)
+    @flats = current_user.flats
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { flat: flat }),
+        image_url: helpers.asset_url("home.png")
+      }
+    end
   end
 
   private
