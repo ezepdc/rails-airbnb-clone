@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :flats do
     resources :bookings, only: :create
   end
+  get "my_flats", to: "flats#my_flats"
 end

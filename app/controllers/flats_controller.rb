@@ -18,6 +18,12 @@ class FlatsController < ApplicationController
   end
 
   def show
+    @markers = [{
+                  lat: @flat.latitude,
+                  lng: @flat.longitude,
+                  info_window: render_to_string(partial: "info_window", locals: { flat: @flat }),
+                  image_url: helpers.asset_url("home.png")
+                }]
     @booking = Booking.new
   end
 
@@ -46,6 +52,10 @@ class FlatsController < ApplicationController
   def destroy
     @flat.destroy
     redirect_to flat_path
+  end
+
+  def my_flats
+    @flats = Flat.find_by(user: current_user)
   end
 
   private

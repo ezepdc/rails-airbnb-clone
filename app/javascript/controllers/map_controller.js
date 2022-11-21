@@ -1,14 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+import { end } from "@popperjs/core"
 
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    markers: Array,
+    // query: String
   }
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
+
+    // console.log(this.queryValue);
+    // console.log(this.markersValue);
+    // console.log(this.markersValue.length);
 
     this.map = new mapboxgl.Map({
       container: this.element,
@@ -17,8 +23,21 @@ export default class extends Controller {
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
-    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl }))
+
+    // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+    //   mapboxgl: mapboxgl }))
+
+
+    // if (this.markersValue.length == 0) {
+    //   const geocoder = new MapboxGeocoder({
+    //     accessToken: mapboxgl.accessToken
+    //   });
+    //   geocoder.query("Buenos Aires");
+    //   this.map.addControl(geocoder);
+    // } else {
+    //   this.#addMarkersToMap()
+    //   this.#fitMapToMarkers()
+    // }
   }
 
   #fitMapToMarkers() {
