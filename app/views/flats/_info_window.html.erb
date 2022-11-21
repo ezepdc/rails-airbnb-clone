@@ -1,2 +1,8 @@
-<h2><%= flat.title %></h2>
-<p><%= flat.city %></p>
+<div class="card-flat-map">
+  <%= cl_image_tag flat.photo.key %>
+  <%= link_to flat_path(flat), target: :_blank do %>
+    <h3><%= flat.title %></h3>
+  <% end %>
+  <h5><%= flat.city %></h5>
+  <p><%= "⭐️" * flat.rating %></p>
+</div>
