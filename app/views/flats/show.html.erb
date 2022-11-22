@@ -50,15 +50,21 @@
   <h2>Bookings</h2>
   <% @flat.bookings.each do |booking| %>
     <div class="card-guest m-4">
-      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" />
+      <% if booking.user.avatar.attached? %>
+        <%= cl_image_tag booking.user.avatar.key%>
+        <% else %>
+        <%= image_tag "user.png" %>
+      <% end %>
       <div class="card-guest-infos">
-        <h2><%= booking.guest_name %></h2>
+        <h2><%= booking.user.first_name %></h2>
+        <% if booking.approve %>
+          <p>This booking was approved</p>
+          <% else %>
+          This booking is pending your approve <%= link_to "Approve booking", approve_path(@flat, booking), class: "btn btn-flat" %>
+        <% end %>
         <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
         <p>Number of guests: <%= booking.number_of_guests %></p>
         <p>Details: <%= booking.details %></p>
-        <%# <%= simple_form_for [@flat, @booking] do |f| %>
-        <%# <%= f.input :approve %>
-        <%# <%= f.submit "Approve booking", class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>

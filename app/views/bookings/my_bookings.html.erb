@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>My bookings</h2>
+  <div class="card-flat p-3 m-2">
+    <% @bookings.each do |booking| %>
+      <%= cl_image_tag booking.flat.photo.key %>
+      <div class="card-flat-infos">
+        <div>
+          <h3><%= booking.flat.title %></h3>
+          <h2><%= booking.flat.city %></h2>
+          <h6>Your host: <%= booking.flat.user.first_name %></h6>
+           <% if booking.approve %>
+            <h6><strong>This booking was approved</strong></h6>
+            <% else %>
+            <h6 style="color: red;">This booking is pending approve</h6>
+          <% end %>
+          <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
+          <p>Number of guests: <%= booking.number_of_guests %></p>
+          <p>Details: <%= booking.details %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
