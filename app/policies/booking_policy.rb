@@ -13,8 +13,4 @@ class BookingPolicy < ApplicationPolicy
   def approve?
     true
   end
-
-  # def my_flats?
-  #   true
-  # end
 end
