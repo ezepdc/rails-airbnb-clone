@@ -25,7 +25,7 @@
             <%= link_to "Edit", edit_flat_path(@flat), class: "btn btn-ghost" %>
           </div>
           <div class="col col-3 col-md-2">
-            <%= link_to "Delete", flat_path(@flat), class: "btn btn-ghost" , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+            <%= link_to "Delete", flat_path(@flat), class: "btn btn-ghost", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"}%>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
         <% if booking.approve %>
           <p>This booking was approved</p>
           <% else %>
-          This booking is pending your approve <%= link_to "Approve booking", approve_path(@flat, booking), class: "btn btn-flat" %>
+          This booking is pending your approve <%= link_to "Approve booking", approve_path(@flat, booking), class: "btn btn-flat", data: {turbo_method: :approve, turbo_confirm: "Are you sure you want to approve?"} %>
         <% end %>
         <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
         <p>Number of guests: <%= booking.number_of_guests %></p>
