@@ -2,7 +2,6 @@
   <h2>My bookings</h2>
   <div class="row">
     <% @bookings.each do |booking| %>
-      <div class="col">
         <div class="card-flat p-3 m-2 ">
           <%= cl_image_tag booking.flat.photo.key %>
           <div class="card-flat-infos">
@@ -21,7 +20,6 @@
             </div>
           </div>
         </div>
-      </div>
     <% end %>
   </div>
 </div>

@@ -4,17 +4,19 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.flat = @flat
     @booking.user = current_user
+    authorize @booking
     if @booking.save
-      redirect_to flat_path(@flat)
+      redirect_to my_bookings_path
     else
       render "flats/show", status: :unprocessable_entity
     end
   end
 
-  def approve?
+  def approve
     @flat = Flat.find(params[:flat_id])
     @booking = Booking.find(params[:id])
     @booking.approve = true
+    authorize @booking
     @booking.save
     redirect_to flat_path(@flat)
   end

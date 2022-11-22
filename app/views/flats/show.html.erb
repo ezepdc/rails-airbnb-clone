@@ -21,12 +21,16 @@
           <% end %>
         </div>
         <div class="row">
-          <div class="col col-3 col-md-2">
-            <%= link_to "Edit", edit_flat_path(@flat), class: "btn btn-ghost" %>
-          </div>
-          <div class="col col-3 col-md-2">
-            <%= link_to "Delete", flat_path(@flat), class: "btn btn-ghost", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"}%>
-          </div>
+          <% if policy(@flat).edit? %>
+            <div class="col col-3 col-md-2">
+              <%= link_to "Edit", edit_flat_path(@flat), class: "btn btn-ghost" %>
+            </div>
+          <% end %>
+          <% if policy(@flat).destroy? %>
+            <div class="col col-3 col-md-2">
+              <%= link_to "Delete", flat_path(@flat), class: "btn btn-ghost", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"}%>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -47,25 +51,27 @@
   <br>
   <br>
   <hr>
-  <h2>Bookings</h2>
-  <% @flat.bookings.each do |booking| %>
-    <div class="card-guest m-4">
-      <% if booking.user.avatar.attached? %>
-        <%= cl_image_tag booking.user.avatar.key%>
-        <% else %>
-        <%= image_tag "user.png" %>
-      <% end %>
-      <div class="card-guest-infos">
-        <h2><%= booking.user.first_name %></h2>
-        <% if booking.approve %>
-          <p>This booking was approved</p>
+  <% if policy(@flat).destroy? %>
+    <h2>Bookings</h2>
+    <% @flat.bookings.each do |booking| %>
+      <div class="card-guest m-4">
+        <% if booking.user.avatar.attached? %>
+          <%= cl_image_tag booking.user.avatar.key%>
           <% else %>
-          This booking is pending your approve <%= link_to "Approve booking", approve_path(@flat, booking), class: "btn btn-flat", data: {turbo_method: :approve, turbo_confirm: "Are you sure you want to approve?"} %>
+          <%= image_tag "user.png" %>
         <% end %>
-        <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
-        <p>Number of guests: <%= booking.number_of_guests %></p>
-        <p>Details: <%= booking.details %></p>
+        <div class="card-guest-infos">
+          <h2><%= booking.user.first_name %></h2>
+          <% if booking.approve %>
+            <p>This booking was approved</p>
+            <% else %>
+            This booking is pending your approve <%= link_to "Approve booking", approve_path(@flat, booking), class: "btn btn-flat", data: {turbo_method: :approve, turbo_confirm: "Are you sure you want to approve?"} %>
+          <% end %>
+          <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
+          <p>Number of guests: <%= booking.number_of_guests %></p>
+          <p>Details: <%= booking.details %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

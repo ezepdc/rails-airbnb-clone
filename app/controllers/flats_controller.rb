@@ -2,6 +2,7 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
 
   def index
+    @flats = policy_scope(Flat)
     if params[:query].present?
       @flats = Flat.search_by_title_city_and_description(params[:query])
     else
@@ -18,6 +19,7 @@ class FlatsController < ApplicationController
   end
 
   def show
+    authorize @flat
     @markers = [{
                   lat: @flat.latitude,
                   lng: @flat.longitude,
@@ -29,11 +31,13 @@ class FlatsController < ApplicationController
 
   def new
     @flat = Flat.new
+    authorize @flat
   end
 
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
+    authorize @flat
     if @flat.save
       redirect_to flat_path(@flat)
     else
@@ -42,20 +46,24 @@ class FlatsController < ApplicationController
   end
 
   def edit
+    authorize @flat
   end
 
   def update
+    authorize @flat
     @flat.update(flat_params)
     redirect_to flat_path(@flat)
   end
 
   def destroy
+    authorize @flat
     @flat.destroy
     redirect_to my_flats_path
   end
 
   def my_flats
     @flats = current_user.flats
+    authorize @flats
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
