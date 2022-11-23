@@ -1,6 +1,6 @@
 <div class="container">
   <h2>My bookings</h2>
-  <div class="row">
+  <div class="row justify-content-center m-1">
     <% @bookings.each do |booking| %>
         <div class="card-flat p-3 m-2 ">
           <%= cl_image_tag booking.flat.photo.key %>
