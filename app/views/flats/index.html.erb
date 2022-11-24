@@ -29,13 +29,11 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @flats.each do |flat| %>
       <div class="col">
-        <div class="card-flat">
+        <%= link_to flat_path(flat), class: "card-flat" do %>
           <%= cl_image_tag flat.photo.key %>
           <div class="card-flat-infos">
             <div>
-              <%= link_to flat_path(flat) do %>
-                <h3><%= flat.title %></h3>
-              <% end %>
+              <h3><%= flat.title %></h3>
               <h2><%= flat.city %></h2>
               <p><%= flat.description %></p>
               <p>Bedrooms: <%= flat.bedrooms %></p>
@@ -50,7 +48,7 @@
               <%= image_tag "user.png", class: "card-flat-user avatar-bordered" %>
             <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
     <% end %>
   </div>

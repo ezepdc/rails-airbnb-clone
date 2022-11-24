@@ -2,7 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    @flats = policy_scope(Flat)
+    # @flats = policy_scope(Flat)
+    @flats = Flat.all
     if params[:query].present?
       @flats = Flat.search_by_title_city_and_description(params[:query])
     else

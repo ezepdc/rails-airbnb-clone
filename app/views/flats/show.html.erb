@@ -51,7 +51,7 @@
   <br>
   <br>
   <hr>
-  <% if policy(@flat).destroy? %>
+  <% if policy(@flat).edit? %>
     <h2>Bookings</h2>
     <% @flat.bookings.each do |booking| %>
       <div class="card-guest m-4">

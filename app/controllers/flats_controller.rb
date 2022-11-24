@@ -1,13 +1,13 @@
 class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: :index
+  # skip_after_action :verify_policy_scoped, only: :index
 
   def index
-    @flats = policy_scope(Flat)
+    # @flats = policy_scope(Flat)
+    @flats = Flat.all
     if params[:query].present?
-      @flats = Flat.search_by_title_city_and_description(params[:query])
-    else
-      @flats = Flat.all
+      @flats.search_by_title_city_and_description(params[:query])
     end
     @markers = @flats.geocoded.map do |flat|
       {
@@ -28,6 +28,7 @@ class FlatsController < ApplicationController
                   image_url: helpers.asset_url("home.png")
                 }]
     @booking = Booking.new
+    # @bookings = current_user == @flat.user ? @flat.bookings : @flat.bookings.where(guest: current_user)
   end
 
   def new
