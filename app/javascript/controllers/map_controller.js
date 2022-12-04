@@ -6,7 +6,7 @@ export default class extends Controller {
   static values = {
     apiKey: String,
     markers: Array,
-    // query: String
+    // <query: String>
   }
 
   connect() {

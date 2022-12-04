@@ -1,4 +1,4 @@
-# PostgreSQL. Versions 9.3 and up are supported.
+ # PostgreSQL. Versions 9.3 and up are supported.
 #
 # Install the pg driver:
 #   gem install pg
@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: airbnb_clone_ezepdc_production
   username: airbnb_clone_ezepdc
   password: <%= ENV["AIRBNB_CLONE_EZEPDC_DATABASE_PASSWORD"] %>
