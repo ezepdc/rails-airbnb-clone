@@ -6,9 +6,9 @@ class FlatsController < ApplicationController
   def index
     # @flats = policy_scope(Flat)
     @flats = Flat.all
-    @flats.search_by_title_city_and_description(params[:query])
-    # if params[:query].present?
-    # end
+    if params[:query].present?
+      @flats = Flat.search_by_title_city_and_description(params[:query])
+    end
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
