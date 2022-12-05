@@ -22,6 +22,6 @@ class Flat < ApplicationRecord
   pg_search_scope :search_by_title_city_and_description,
     against: [ :title, :city, :description ],
     using: {
-    tsearch: { prefix: true }
-  }
+      tsearch: { prefix: true }
+    }
 end
