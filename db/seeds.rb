@@ -11,7 +11,7 @@ puts "Creating..."
 
 user1 = User.create(
   first_name: "Ana",
-  email: "ana@gmail.com",
+  email: Faker::Internet.email,
   password: "Aribnb+22"
 )
 file = File.open(Rails.root.join("app/assets/images/10.jpg"))
@@ -20,7 +20,7 @@ puts "User with id: #{user1.id} has been created"
 
 user2 = User.create(
   first_name: "Vidinha",
-  email: "vidinha@gmail.com",
+  email: Faker::Internet.email,
   password: "Aribnb+22"
 )
 file = File.open("app/assets/images/8.jpg")
@@ -29,7 +29,7 @@ puts "User with id: #{user2.id} has been created"
 
 user3 = User.create(
   first_name: "Rosalia",
-  email: "rosalia@gmail.com",
+  email: Faker::Internet.email,
   password: "Aribnb+22"
 )
 file = File.open("app/assets/images/79.jpg")
@@ -47,7 +47,7 @@ puts "User with id: #{user3.id} has been created"
     bedrooms: rand(1..8),
     number_of_guests: rand(1..10),
     price_per_night: rand(25..170),
-    user_id: rand(1...3),
+    user: [user1, user2, user3].sample,
     address: Faker::Address.country
   )
   file = URI.open('https://loremflickr.com/400/400/house,home')
